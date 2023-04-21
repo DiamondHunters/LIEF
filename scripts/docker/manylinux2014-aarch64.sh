@@ -18,6 +18,8 @@ export CFLAGS='-ffunction-sections -fdata-sections -static-libstdc++ -static-lib
 export LDFLAGS='-Wl,--gc-sections'
 export _PYTHON_HOST_PLATFORM=manylinux2014-aarch64
 
+
+env
 git config --global --add safe.directory /work
 
 $PYTHON_BINARY -m pip -vv wheel --wheel-dir=dist/ api/python
