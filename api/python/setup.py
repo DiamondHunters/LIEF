@@ -265,6 +265,7 @@ class BuildLibrary(build_ext):
     def run(self):
         for ext in self.extensions:
             self.build_extension(ext)
+            print(os.environ)
         self.copy_extensions_to_source()
 
     def _fix_platform(self):
