@@ -1,5 +1,6 @@
 name: 'Linux AArch64'
-on: push
+on: 
+  workflow_dispatch: {}
 
 jobs:
   linux-sdk:
@@ -50,35 +51,3 @@ jobs:
            -v $GITHUB_WORKSPACE:/work                                                                         \
            -v $HOME/.ccache:/ccache                                                                           \
           --rm liefproject/manylinux2014-aarch64 bash /work/scripts/docker/manylinux2014-aarch64.sh
-      - name: 'Upload SDK Artifact'
-        if: matrix.python-version == '3.9'
-        uses: actions/upload-artifact@v3
-        with:
-          name: linux-aarch64-sdk
-          path: build/*.tar.gz
-          retention-days: 3
-      - name: 'Upload Python Wheel Artifact - ${{ matrix.python-version }}'
-        uses: actions/upload-artifact@v3
-        with:
-          name: linux-aarch64-wheel-${{ matrix.python-version }}
-          path: dist/*.whl
-          retention-days: 3
-      - name: Deploy
-        env:
-          LIEF_S3_KEY: ${{ secrets.LIEF_S3_KEY }}
-          LIEF_S3_SECRET: ${{ secrets.LIEF_S3_SECRET }}
-        shell: bash
-        run: |
-          docker run                                          \
-            -v $GITHUB_WORKSPACE:/src                         \
-            -e GITHUB_ACTIONS="true"                          \
-            -e GITHUB_WORKSPACE=$GITHUB_WORKSPACE             \
-            -e GITHUB_REF=$GITHUB_REF                         \
-            -e GITHUB_REPOSITORY=$GITHUB_REPOSITORY           \
-            -e LIEF_S3_KEY=$LIEF_S3_KEY                       \
-            -e LIEF_S3_SECRET=$LIEF_S3_SECRET                 \
-            --rm                                              \
-            liefproject/deploy python3 /src/.github/deploy.py
-
-
-
