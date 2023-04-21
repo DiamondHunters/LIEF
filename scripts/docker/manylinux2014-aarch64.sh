@@ -16,7 +16,7 @@ set -ex
 export CXXFLAGS='-ffunction-sections -fdata-sections -fvisibility-inlines-hidden -static-libstdc++ -static-libgcc'
 export CFLAGS='-ffunction-sections -fdata-sections -static-libstdc++ -static-libgcc'
 export LDFLAGS='-Wl,--gc-sections'
-export _PYTHON_HOST_PLATFORM="manylinux2014-aarch64"
+export _PYTHON_HOST_PLATFORM=manylinux2014-aarch64
 
 git config --global --add safe.directory /work
 
