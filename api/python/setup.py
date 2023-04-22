@@ -259,16 +259,16 @@ class Module(Extension):
 
 class BuildLibrary(build_ext):
     def __init__(self, *args, **kwargs):
-        print(sys.platform)
-        print(os.environ["_PYTHON_HOST_PLATFORM"])
-        print("\n\n\n\n\n")
         self._fix_platform()
         super().__init__(*args, **kwargs)
 
     def run(self):
+        print(sys.platform)
+        print(os.environ["_PYTHON_HOST_PLATFORM"])
+        print("\n\n\n\n\n")
+        print(os.environ)
         for ext in self.extensions:
             self.build_extension(ext)
-            print(os.environ)
         self.copy_extensions_to_source()
 
     def _fix_platform(self):
