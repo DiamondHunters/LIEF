@@ -265,6 +265,11 @@ class BuildLibrary(build_ext):
     def run(self):
         print(sys.platform)
         print(os.environ["_PYTHON_HOST_PLATFORM"])
+        print(self.get_ext_filename(self.get_ext_fullname(ext.name)))
+        print(self.get_ext_fullname(ext.name))
+        print(self.get_ext_filename)
+        print(self.get_ext_fullname(ext.name))
+        print(sysconfig.get_platform())
         print("\n\n\n\n\n")
         print(os.environ)
         for ext in self.extensions:
