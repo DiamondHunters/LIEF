@@ -51,8 +51,8 @@ jobs:
            -v $GITHUB_WORKSPACE:/work                                                                         \
            -v $HOME/.ccache:/ccache                                                                           \
           --rm liefproject/manylinux2014-aarch64 bash /work/scripts/docker/manylinux2014-aarch64.sh
-      - name: 'Upload Python Wheel Artifact - ${{ matrix.python-version }}'
+      - name: 'Upload Python Wheel Artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: linux-aarch64-wheel-${{ matrix.python-version }}
+          name: linux-aarch64-wheel
           path: dist/*.whl
